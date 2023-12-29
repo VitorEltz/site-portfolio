@@ -1,6 +1,6 @@
 # Astro Vitor Eltz: Portfolio
 
-![portfolio](https://github.com/VitorEltz/site-portfolio/blob/main/public/assets/photo.jpeg?raw=true)
+![portfolio](https://github.com/VitorEltz/site-portfolio/blob/main/public/assets/Screenshot%202023-12-29%20at%2016.41.16.png?raw=true)
 
 ## 🧞 Commands
 
