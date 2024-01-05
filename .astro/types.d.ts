@@ -175,23 +175,16 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"work": {
-"bloom-box copy 2.md": {
-	id: "bloom-box copy 2.md";
-  slug: "bloom-box-copy-2";
-  body: string;
-  collection: "work";
-  data: InferEntrySchema<"work">
-} & { render(): Render[".md"] };
-"bloom-box copy.md": {
-	id: "bloom-box copy.md";
-  slug: "bloom-box-copy";
-  body: string;
-  collection: "work";
-  data: InferEntrySchema<"work">
-} & { render(): Render[".md"] };
 "bloom-box.md": {
 	id: "bloom-box.md";
   slug: "bloom-box";
+  body: string;
+  collection: "work";
+  data: InferEntrySchema<"work">
+} & { render(): Render[".md"] };
+"h20 copy.md": {
+	id: "h20 copy.md";
+  slug: "h20-copy";
   body: string;
   collection: "work";
   data: InferEntrySchema<"work">
@@ -222,9 +215,7 @@ declare module 'astro:content' {
 	};
 
 	type DataEntryMap = {
-		"externalurls": {
-};
-
+		
 	};
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
