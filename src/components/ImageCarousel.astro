@@ -1,0 +1,61 @@
+---
+interface Image {
+  src: string;
+  alt?: string;
+}
+interface Props {
+  images: Image[];
+}
+const { images } = Astro.props;
+let current = 0;
+---
+
+<div class="carousel">
+  <button class="prev" onclick="this.parentElement.querySelector('.carousel-track').scrollBy({left: -this.parentElement.offsetWidth, behavior: 'smooth'})">&#8592;</button>
+  <div class="carousel-track">
+    {images.map((img, i) => (
+      <img src={img.src} alt={img.alt || ''} class:list={[i === 0 ? 'active' : '']} loading="lazy" />
+    ))}
+  </div>
+  <button class="next" onclick="this.parentElement.querySelector('.carousel-track').scrollBy({left: this.parentElement.offsetWidth, behavior: 'smooth'})">&#8594;</button>
+</div>
+
+<style>
+.carousel {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto;
+}
+.carousel-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 1rem;
+  width: 100%;
+}
+.carousel-track img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 1rem;
+  scroll-snap-align: center;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+button.prev, button.next {
+  background: var(--gray-900, #222);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+button.prev:hover, button.next:hover {
+  background: var(--accent-regular, #f36);
+}
+</style> 
