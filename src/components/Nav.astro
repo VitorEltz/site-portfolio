@@ -3,11 +3,23 @@ import Icon from './Icon.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import type { iconPaths } from './IconPaths';
 
+interface Props {
+        lang: string;
+}
+
+const { lang } = Astro.props;
+
+const labels = {
+        en: { home: 'Home', work: 'Work', about: 'About' },
+        'pt-br': { home: 'In\u00edcio', work: 'Trabalho', about: 'Sobre' },
+        es: { home: 'Inicio', work: 'Proyectos', about: 'Acerca' },
+} as const;
+
 /** Main menu items */
 const textLinks: { label: string; href: string }[] = [
-	{ label: 'Home', href: '/' },
-	{ label: 'Work', href: '/work/' },
-	{ label: 'About', href: '/about/' },
+        { label: labels[lang].home, href: `/${lang}/` },
+        { label: labels[lang].work, href: `/${lang}/work/` },
+        { label: labels[lang].about, href: `/${lang}/about/` },
 ];
 
 /** Icon links to social media — edit these with links to your profiles! */
@@ -27,7 +39,7 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 
 <nav>
 	<div class="menu-header">
-		<a href="/" class="site-title">
+                <a href={`/${lang}/`} class="site-title">
 			<Icon icon="terminal-window" color="var(--accent-regular)" size="1.6em" gradient />
 			 Vitor Eltz
 		</a>
