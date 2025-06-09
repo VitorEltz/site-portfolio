@@ -3,4 +3,11 @@ import mdx from '@astrojs/mdx';
 
 export default defineConfig({
   integrations: [mdx()],
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'pt-br', 'es'],
+    routing: {
+      prefixDefaultLocale: true,
+    },
+  },
 });

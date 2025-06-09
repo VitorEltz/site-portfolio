@@ -1,0 +1,10 @@
+---
+const { lang } = Astro.params;
+const pages = import.meta.glob('../../content/*/about.mdx');
+const getPage = pages[`../../content/${lang}/about.mdx`];
+if (!getPage) {
+  throw new Error(`Page not found for lang ${lang}`);
+}
+const { default: Page } = await getPage();
+---
+<Page />
