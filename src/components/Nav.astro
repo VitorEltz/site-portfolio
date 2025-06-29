@@ -2,12 +2,26 @@
 import Icon from './Icon.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import type { iconPaths } from './IconPaths';
+import { Astro } from 'astro';
+
+const loc = Astro.url.pathname.split('/')[1];
+const locale = ['es', 'pt'].includes(loc) ? loc : 'en';
+const base = locale === 'en' ? '' : `/${locale}`;
 
 /** Main menu items */
 const textLinks: { label: string; href: string }[] = [
-	{ label: 'Home', href: '/' },
-	{ label: 'Work', href: '/work/' },
-	{ label: 'About', href: '/about/' },
+        {
+                label: locale === 'es' ? 'Inicio' : locale === 'pt' ? 'Início' : 'Home',
+                href: `${base}/`,
+        },
+        {
+                label: locale === 'es' ? 'Trabajo' : locale === 'pt' ? 'Trabalhos' : 'Work',
+                href: `${base}/work/`,
+        },
+        {
+                label: locale === 'es' ? 'Sobre' : locale === 'pt' ? 'Sobre' : 'About',
+                href: `${base}/about/`,
+        },
 ];
 
 /** Icon links to social media — edit these with links to your profiles! */
@@ -26,20 +40,35 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 ---
 
 <nav>
-	<div class="menu-header">
-		<a href="/" class="site-title">
+        <div class="menu-header">
+                <a href={base + '/'} class="site-title">
 			<Icon icon="terminal-window" color="var(--accent-regular)" size="1.6em" gradient />
 			 Vitor Eltz
 		</a>
-		<menu-button>
-			<template>
-				<button class="menu-button" aria-expanded="false">
-					<span class="sr-only">Menu</span>
-					<Icon icon="list" />
-				</button>
-			</template>
-		</menu-button>
-	</div>
+                <menu-button>
+                        <template>
+                                <button class="menu-button" aria-expanded="false">
+                                        <span class="sr-only">Menu</span>
+                                        <Icon icon="list" />
+                                </button>
+                        </template>
+                </menu-button>
+                <div class="lang-switch flex gap-2 ml-4">
+                        {['en', 'es', 'pt'].map((l) => (
+                                <a
+                                        href={
+                                                l === 'en'
+                                                        ? Astro.url.pathname.replace(/^\/(es|pt)/, '')
+                                                        : `/${l}${Astro.url.pathname.replace(/^\/(es|pt)/, '')}`
+                                        }
+                                        aria-current={l === locale ? 'page' : undefined}
+                                        class:list-active={l === locale}
+                                >
+                                        {l.toUpperCase()}
+                                </a>
+                        ))}
+                </div>
+        </div>
 	<noscript>
 		<ul class="nav-items">
 			{
@@ -363,9 +392,17 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 			gap: 0;
 		}
 	}
-	@media (forced-colors: active) {
-		.link.active {
-			color: SelectedItem;
-		}
-	}
+        @media (forced-colors: active) {
+                .link.active {
+                        color: SelectedItem;
+                }
+        }
+
+        .lang-switch a {
+                opacity: 0.6;
+        }
+        .lang-switch a[list-active] {
+                opacity: 1;
+                font-weight: 700;
+        }
 </style>
