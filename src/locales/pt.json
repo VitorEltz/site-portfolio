@@ -1,0 +1,15 @@
+{
+  "hero": {
+    "title": "Olá, eu sou Vitor",
+    "tagline": "Desenvolvedor full-stack"
+  },
+  "nav": {
+    "about": "Sobre",
+    "work": "Trabalhos",
+    "contact": "Contato"
+  },
+  "cta": {
+    "hireMe": "Contrate-me",
+    "viewAll": "Ver Tudo"
+  }
+}

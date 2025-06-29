@@ -1,0 +1,15 @@
+{
+  "hero": {
+    "title": "Hi, I'm Vitor",
+    "tagline": "Full-stack developer"
+  },
+  "nav": {
+    "about": "About",
+    "work": "Work",
+    "contact": "Contact"
+  },
+  "cta": {
+    "hireMe": "Hire Me",
+    "viewAll": "View All"
+  }
+}
